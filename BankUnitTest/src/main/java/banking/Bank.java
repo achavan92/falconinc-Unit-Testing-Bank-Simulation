@@ -2,6 +2,7 @@ package banking;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import org.junit.Test;
 
 /**
  * @author wpollock
