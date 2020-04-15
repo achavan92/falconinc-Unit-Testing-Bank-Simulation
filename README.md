@@ -1,2 +1,2 @@
 # falconinc-Unit-Testing-Bank-Simulation
-Project 6- Java 2
+Java 2-- Project 6 -- JUnit Testing
