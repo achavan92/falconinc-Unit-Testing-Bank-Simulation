@@ -5,7 +5,6 @@
  */
 package banking;
 
-import java.io.*;
 import java.util.List;
 import java.util.SortedSet;
 import org.junit.After;
@@ -17,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Robert (Alex) Spangler
+ * @author PC User
  */
 public class BankTest {
     
@@ -41,7 +40,7 @@ public class BankTest {
     }
 
     /**
-     * First test of main method, of class Bank.
+     * Test of main method, of class Bank.
      */
     @Test
     public void testMain() {
@@ -49,7 +48,7 @@ public class BankTest {
         String[] args = null;
         Bank.main(args);
     }
-    
+
     /**
      * Test of getInsufficientFundsPenalty method, of class Bank.
      */
