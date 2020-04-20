@@ -10,8 +10,17 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13</version>
-            <type>jar</type>
         </dependency>
+        
+        <!-- New dependency for junit 5 -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+        <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter</artifactId>
+         <version>5.4.2</version>
+         <scope>test</scope>
+        </dependency>
+        
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -50,7 +50,6 @@ public class BankTest {
         Bank.main(args);
     }
     
-
     /**
      * Test of getInsufficientFundsPenalty method, of class Bank.
      */
