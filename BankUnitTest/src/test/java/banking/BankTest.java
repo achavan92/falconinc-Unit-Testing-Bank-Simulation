@@ -5,6 +5,7 @@
  */
 package banking;
 
+import java.io.*;
 import java.util.List;
 import java.util.SortedSet;
 import org.junit.After;
@@ -40,16 +41,16 @@ public class BankTest {
     }
 
     /**
-     * Test of main method, of class Bank.
+     * First test of main method, of class Bank.
+     * Designed to fail.
      */
     @Test
     public void testMain() {
         System.out.println("main");
         String[] args = null;
         Bank.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
+    
 
     /**
      * Test of getInsufficientFundsPenalty method, of class Bank.
@@ -61,8 +62,6 @@ public class BankTest {
         double expResult = 0.0;
         double result = instance.getInsufficientFundsPenalty();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +73,6 @@ public class BankTest {
         double insufficientFundsPenalty = 0.0;
         Bank instance = null;
         instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,8 +85,6 @@ public class BankTest {
         String expResult = "";
         String result = instance.getNAME();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -100,8 +95,6 @@ public class BankTest {
         System.out.println("addAccountWizard");
         Bank instance = null;
         instance.addAccountWizard();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -114,8 +107,6 @@ public class BankTest {
         SortedSet<Account> expResult = null;
         SortedSet<Account> result = instance.getAllAccounts();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -126,8 +117,6 @@ public class BankTest {
         System.out.println("addCustomerWizard");
         Bank instance = null;
         instance.addCustomerWizard();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -142,8 +131,6 @@ public class BankTest {
         String expResult = "";
         String result = instance.addCustomer(lastName, firstName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -155,8 +142,6 @@ public class BankTest {
         String customerId = "";
         Bank instance = null;
         instance.removeCustomer(customerId);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -169,8 +154,6 @@ public class BankTest {
         SortedSet<Customer> expResult = null;
         SortedSet<Customer> result = instance.getAllCustomers();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -184,8 +167,6 @@ public class BankTest {
         Customer expResult = null;
         Customer result = instance.getCustomer(customerId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -200,8 +181,6 @@ public class BankTest {
         List<Customer> expResult = null;
         List<Customer> result = instance.getCustomer(lastName, firstName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -215,8 +194,6 @@ public class BankTest {
         List<Account> expResult = null;
         List<Account> result = instance.getCustomersAccounts(customerId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
