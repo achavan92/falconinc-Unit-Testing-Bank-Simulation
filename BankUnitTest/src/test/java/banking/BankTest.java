@@ -42,7 +42,6 @@ public class BankTest {
 
     /**
      * First test of main method, of class Bank.
-     * Designed to fail.
      */
     @Test
     public void testMain() {
