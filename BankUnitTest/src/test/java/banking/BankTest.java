@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author PC User
+ * @author Robert (Alex) Spangler
  */
 public class BankTest {
     
