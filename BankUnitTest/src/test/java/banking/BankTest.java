@@ -24,17 +24,16 @@ import org.junit.jupiter.api.Test;
  */
 public class BankTest {
     
-    Bank bank = new Bank("bank");
-    String Name = "name";
-    double insufficientFundsPenalty = 10.00;  // Default, in dollars
-    String description;
-    Bank account1;
-    Bank account2;
+    Bank bank;
+    String NAME;
+    double insufficientFundsPenalty;  
 
     // initailiser
     @BeforeEach
     void init(){
-        //ToDo: finish initailiser
+        NAME = "";
+        bank = new Bank(NAME);
+        insufficientFundsPenalty = 10.00;
     }
     
     //constructor
@@ -47,19 +46,17 @@ public class BankTest {
         @Test
         @DisplayName("This should pass")
         void BankConstructorTest(String name){
-            name = "Name";
+            name = NAME;
+            String expResult = "";
+            assertEquals(name,expResult);
         }
         
         @Test
         @DisplayName("Name is null")
         void BankConstructorTestNullName(String name){
             name = null;
-        }
-        
-        @Test
-        @DisplayName("Name is blank")
-        void BankConstructorTestBlankName(String name){
-            name = "";
+            String expResult = "";
+            assertEquals(name,expResult);
         }
     }
     
@@ -77,26 +74,34 @@ public class BankTest {
         //ToDo: finish
         @Test
         @DisplayName("This should pass")
-        double testGetInsufficientFundsPenalty(){
-            return insufficientFundsPenalty = 10.00;
+        void testGetInsufficientFundsPenalty(){
+            Bank instance = bank;
+            double expResult = 0.0;
+            double result = instance.getInsufficientFundsPenalty();
+            assertEquals(expResult, result, insufficientFundsPenalty);
         }
         
+        // figure this out!!!
         @Test
         @DisplayName("Negative amount for insufficientFundsPenalty")
-        double testGetInsufficientFundsPenaltyNegativeAmount(){
-            return insufficientFundsPenalty = -10.00;
+        void testGetInsufficientFundsPenaltyNegativeAmount(){
+            Bank instance = bank;
+            double expResult = 0.0;
+            double result = instance.getInsufficientFundsPenalty();
+             
+            
         }
         
         @Test
         @DisplayName("Amount over insufficientFundsPenalty")
-        double testGetInsufficientFundsPenaltyOverAmount(){
-            return insufficientFundsPenalty = 10.01;
+        void testGetInsufficientFundsPenaltyOverAmount(){
+           //redo
         }
         
         @Test
         @DisplayName("Amount under insufficientFundsPenalty")
-        double testGetInsufficientFundsPenaltyUnderAmount(){
-            return insufficientFundsPenalty = 9.99;
+        void testGetInsufficientFundsPenaltyUnderAmount(){
+            //redo
         }
         
     }
@@ -125,23 +130,23 @@ public class BankTest {
      */
     @Nested
     class TestGetName{
-        //ToDo: finish
+        //ToDo: redo
         @Test
-        @DisplayName("THis should pass")
-        String TestGetName(){
-            return Name;
+        @DisplayName("This should pass")
+        void TestGetName(){
+            NAME = "";
         }
         
         @Test
         @DisplayName("Name cannot be null")
-        String TestGetNameNull(){
-            return Name = null;
+        void TestGetNameNull(){
+            NAME = null;
         }
         
         @Test
         @DisplayName("Name cannot be an empty String")
-        String TestGetNameEmptyString(){
-            return Name = "";
+        void TestGetNameEmptyString(){
+            NAME = "";
         }
         
     }
@@ -151,19 +156,19 @@ public class BankTest {
      */
     @Nested
     class TestAddAcountWizard {
-       //ToDo: finish 
+       //ToDo: redo 
         @Test
         @DisplayName("This should pass")
         void testAddAccountWizard() {
-           Bank instance = bank;
-        instance.addAccountWizard();          
+            Bank instance = bank;
+            instance.addAccountWizard();          
         }
         
         @Test
         @DisplayName("No Bank object")
         void testAddAccountWizardNullBank() {
-           Bank instance = null;
-        instance.addAccountWizard();          
+            Bank instance = null;
+            instance.addAccountWizard(); 
         }
         
     }
@@ -173,41 +178,29 @@ public class BankTest {
      */
     @Nested
     class TestGetAllAccounts{
-        //ToDo: finish
+        //ToDo: finish methods
         @Test
         @DisplayName("This should pass")
-        SortedSet<Account> testGetAllAccounts(){
-            Bank instance = bank;
-            SortedSet<Account> expResult = null; // remove null value
-            SortedSet<Account> result = instance.getAllAccounts();
-            return result;
+        void testGetAllAccounts(){
+            
         }
         
         @Test
         @DisplayName("Bank object is null")
-        SortedSet<Account> testGetAllAccountsNoBankObject(){
-            Bank instance = null;
-            SortedSet<Account> expResult = null; // remove null value
-            SortedSet<Account> result = instance.getAllAccounts();
-            return result;
+        void testGetAllAccountsNoBankObject(){
+            
         }
         
         @Test
         @DisplayName("expected results is null")
-        SortedSet<Account> testGetAllAccountsNullEptResult(){
-            Bank instance = bank;
-            SortedSet<Account> expResult = null; 
-            SortedSet<Account> result = instance.getAllAccounts();
-            return result;
+        void testGetAllAccountsNullEptResult(){
+            
         }
               
         @Test
         @DisplayName("Bank object is null and expected results is null")
-        SortedSet<Account> testGetAllAccountsNoBankObjectAndNullEptResult(){
-            Bank instance = null;
-            SortedSet<Account> expResult = null;
-            SortedSet<Account> result = instance.getAllAccounts();
-            return result;
+        void testGetAllAccountsNoBankObjectAndNullEptResult(){
+            
         }
     }
 
@@ -241,56 +234,80 @@ public class BankTest {
         //ToDo: finish
         @Test
         @DisplayName("This should pass")
-        public void testAddCustomer() {
-        String lastName = "FirstName";
-        String firstName = "LastName";
-        Bank instance = bank;
-        String result = instance.addCustomer(lastName, firstName);
+        void testAddCustomer() {
+            String lastName = "";
+            String firstName = "";
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("FirstName is null")
-        public void testAddCustomerNullFirstName() {
-        String lastName = null;
-        String firstName = "LastName";
-        Bank instance = bank;
-        String result = instance.addCustomer(lastName, firstName);
+        void testAddCustomerNullFirstName() {
+            String lastName = null;
+            String firstName = "";
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
-        @Test
-        @DisplayName("FirstName is an empty String")
-        public void testAddCustomerBlankFirstName() {
-        String lastName = "";
-        String firstName = "LastName";
-        Bank instance = bank;
-        String result = instance.addCustomer(lastName, firstName);
-        }
         
         @Test
         @DisplayName("LastName is null")
-        public void testAddCustomerNullLastName() {
-        String lastName = "FirstName";
-        String firstName = null;
-        Bank instance = bank;
-        String result = instance.addCustomer(lastName, firstName);
+        void testAddCustomerNullLastName() {
+            String lastName = "";
+            String firstName = null;
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
-        @DisplayName("LastName is empty String")
-        public void testAddCustomerBlankLastName() {
-        String lastName = "FirstName";
-        String firstName = "";
-        Bank instance = bank;
-        String result = instance.addCustomer(lastName, firstName);
+        @DisplayName("No Bank Object and no firstName")
+        void testAddCustomerNoBankObject() {
+            String lastName = "";
+            String firstName = "";
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
-        @DisplayName("No Bank Object")
-        public void testAddCustomerNoBankObject() {
-        String lastName = "FirstName";
-        String firstName = null;
-        Bank instance = null;
-        String result = instance.addCustomer(lastName, firstName);
+        @DisplayName("No Bank Object and no firstName")
+        void testAddCustomerNoBankObjectAndNoFirstName() {
+            String lastName = "";
+            String firstName = null;
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("No Bank Object and no lastName")
+        void testAddCustomerNoBankObjectAndNoLastName() {
+            String lastName = null;
+            String firstName = "";
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("No Bank Object, no lastName, and no firstName")
+        void testAddCustomerNoBankObjectNoLastNameAndNoFirstName() {
+            String lastName = null;
+            String firstName = null;
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
     }
 
@@ -302,32 +319,26 @@ public class BankTest {
         //ToDo: finish
         @Test
         @DisplayName("This should pass")
-        public void testRemoveCustomer() {
-            String customerId = "1";
-            Bank instance = bank;
-            instance.removeCustomer(customerId);
-        }
-        
-        @Test
-        @DisplayName("Customer ID is blank")
-        public void testRemoveCustomerNoCustomerId() {
+        void testRemoveCustomer() {
             String customerId = "";
             Bank instance = bank;
             instance.removeCustomer(customerId);
         }
         
+        
+        
         @Test
-        @DisplayName("Customer ID is null")
-        public void testRemoveCustomerNullCustomerId() {
+        @DisplayName("No customer ID")
+        void testRemoveCustomerNullCustomerId() {
             String customerId = null;
             Bank instance = bank;
             instance.removeCustomer(customerId);
         }
         
         @Test
-        @DisplayName("No Bank Object")
-        public void testRemoveCustomerNoBankObject() {
-            String customerId = "1";
+        @DisplayName("No Bank Object passed ")
+        void testRemoveCustomerNoBankObject() {
+            String customerId = "";
             Bank instance = null;
             instance.removeCustomer(customerId);
         }
@@ -382,37 +393,37 @@ public class BankTest {
         @Test
         @DisplayName("This should pass")
         void testGetCustomer_String() {
-        String customerId = "1";
-        Bank instance = bank;
-        Customer expResult = instance.getCustomer(customerId);
-        Customer result = instance.getCustomer(customerId);
+            String customerId = "1";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
         }
         
         @Test
         @DisplayName("Customer ID number is empty")
         void testGetCustomer_StringBlankId() {
-        String customerId = "";
-        Bank instance = bank;
-        Customer expResult = instance.getCustomer(customerId);
-        Customer result = instance.getCustomer(customerId);
+            String customerId = "";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
         }
         
         @Test
         @DisplayName("No Bank Object")
         void testGetCustomer_StringNoBankObjct() {
-        String customerId = "";
-        Bank instance = null;
-        Customer expResult = instance.getCustomer(customerId);
-        Customer result = instance.getCustomer(customerId);
+            String customerId = "";
+            Bank instance = null;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
         }
         
         @Test
         @DisplayName("expResult is null")
         void testGetCustomer_StringNoCustomerObjct() {
-        String customerId = "";
-        Bank instance = bank;
-        Customer expResult = instance.getCustomer(customerId);
-        Customer result = instance.getCustomer(customerId);
+            String customerId = "";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
         }
         
     }
@@ -425,7 +436,7 @@ public class BankTest {
         //ToDo: finish
         @Test
         @DisplayName("This should pass")
-        public void testGetCustomer_String_String() {
+        void testGetCustomer_String_String() {
             String lastName = "FirstName";
             String firstName = "LastName";
             Bank instance = bank;
@@ -435,7 +446,7 @@ public class BankTest {
         
         @Test
         @DisplayName("FirstName is an Empty String")
-        public void testGetCustomer_String_StringNoFirstName() {
+        void testGetCustomer_String_StringNoFirstName() {
             String lastName = "";
             String firstName = "LastName";
             Bank instance = bank;
@@ -445,7 +456,7 @@ public class BankTest {
         
         @Test
         @DisplayName("LastName is an empty String")
-        public void testGetCustomer_String_StringNoLastName() {
+        void testGetCustomer_String_StringNoLastName() {
             String lastName = "FirstName";
             String firstName = "";
             Bank instance = bank;
@@ -455,7 +466,7 @@ public class BankTest {
         
         @Test
         @DisplayName("No Bank object passed")
-        public void testGetCustomer_String_StringNoBankObjct() {
+        void testGetCustomer_String_StringNoBankObjct() {
             String lastName = "FirstName";
             String firstName = "LastName";
             Bank instance = null;
@@ -465,7 +476,7 @@ public class BankTest {
         
         @Test
         @DisplayName("Expected Result is null")
-        public void testGetCustomer_String_StringNUllExpResult() {
+        void testGetCustomer_String_StringNUllExpResult() {
             String lastName = "FirstName";
             String firstName = "LastName";
             Bank instance = bank;
@@ -483,7 +494,7 @@ public class BankTest {
         
         @Test
         @DisplayName("This should pass")
-        public void testGetCustomersAccounts() {
+        void testGetCustomersAccounts() {
             String customerId = "1";
             Bank instance = bank;
             List<Account> expResult = instance.getCustomersAccounts(customerId);
@@ -492,7 +503,7 @@ public class BankTest {
         
         @Test
         @DisplayName("No Customer ID number")
-        public void testGetCustomersAccountsNoID() {
+        void testGetCustomersAccountsNoID() {
             String customerId = "";
             Bank instance = bank;
             List<Account> expResult = instance.getCustomersAccounts(customerId);
@@ -501,7 +512,7 @@ public class BankTest {
         
         @Test
         @DisplayName("No Bank Object Passed")
-        public void testGetCustomersAccountsNoBankObjct() {
+        void testGetCustomersAccountsNoBankObjct() {
             String customerId = "1";
             Bank instance = null;
             List<Account> expResult = instance.getCustomersAccounts(customerId);
@@ -510,7 +521,7 @@ public class BankTest {
         
         @Test
         @DisplayName("No expected result")
-        public void testGetCustomersAccountsNoexpRessult() {
+        void testGetCustomersAccountsNoexpRessult() {
             String customerId = "1";
             Bank instance = bank;
             List<Account> expResult = null;
