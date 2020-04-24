@@ -13,7 +13,6 @@ import java.util.SortedSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -24,17 +23,19 @@ import org.junit.jupiter.api.Test;
  */
 public class BankTest {
     
-   Bank bank;
-    String NAME;
+    String custName;
     double insufficientFundsPenalty;  
-
-    // initailiser
+    Bank bank1;
+    Bank bank2;
+    
+    // test fixtures 
     @BeforeEach
-    void init(){
+    void setUp(){
         //ToDo: finish
-        NAME = "";
-        bank = new Bank(NAME);
+        custName = "Name";
         insufficientFundsPenalty = 10.00;
+        bank1 = new Bank(custName);
+        bank2 = new Bank(custName);
     }
     
     //constructor
@@ -44,16 +45,19 @@ public class BankTest {
     @Nested
     class ConstructorTest{
         //ToDo: finish
+        // NOTE: Tests below are not being executed when tests are ran.
         @Test
         @DisplayName("This should pass")
         void BankConstructorTest(String name){
-            //stub
+            custName = "";
+            assertDoesNotThrow( () -> bank1 = new Bank(custName), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Name is null")
         void BankConstructorTestNullName(String name){
-            //stub;
+            custName = null;
+            assertThrows( IllegalArgumentException.class, () -> bank2 = new Bank(custName), "Will it be read???");//No!
         }
     }
     
@@ -70,7 +74,7 @@ public class BankTest {
     class TestGetInsufficientFundsPenalty{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getInsufficientFundsPenalty should pass")
         void testGetInsufficientFundsPenalty(){
             //stub
         }
@@ -102,7 +106,7 @@ public class BankTest {
     class TestSetInsufficientFundsPenalty{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("setInsufficientFundsPenalty should pass")
         void testSetInsufficientFundsPenalty(double insufficientFunds){
             //stub
         }
@@ -121,13 +125,13 @@ public class BankTest {
     class TestGetName{
         //ToDo: redo
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getName should pass")
         void TestGetName(){
             //stub
         }
         
         @Test
-        @DisplayName("Name cannot be null")
+        @DisplayName("Name cannot be null in getName")
         void TestGetNameNull(){
             //stub
         }
@@ -141,13 +145,13 @@ public class BankTest {
     class TestAddAcountWizard {
        //ToDo: redo 
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("addAcountWizard should pass")
         void testAddAccountWizard() {
             //stub         
         }
         
         @Test
-        @DisplayName("No Bank object")
+        @DisplayName("No Bank object for addAccountWizard")
         void testAddAccountWizardNullBank() {
             //stub 
         }
@@ -161,25 +165,25 @@ public class BankTest {
     class TestGetAllAccounts{
         //ToDo: finish methods
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("testGetAllAccounts should pass")
         void testGetAllAccounts(){
             //stub
         }
         
         @Test
-        @DisplayName("Bank object is null")
+        @DisplayName("Bank object is null for testGetAllAccounts")
         void testGetAllAccountsNoBankObject(){
             //stub
         }
         
         @Test
-        @DisplayName("expected results is null")
+        @DisplayName("expected results is null for testGetAllAccounts")
         void testGetAllAccountsNullEptResult(){
             //stub
         }
               
         @Test
-        @DisplayName("Bank object is null and expected results is null")
+        @DisplayName("Bank object is null and expected results is null for testGetAllAccounts")
         void testGetAllAccountsNoBankObjectAndNullEptResult(){
             //stub
         }
@@ -192,13 +196,13 @@ public class BankTest {
     class TestAddCustomerWizard{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("addCustomerWizard should pass")
         void testAddCustomerWizard(){
             //stub
         }
         
         @Test
-        @DisplayName("No Bank object")
+        @DisplayName("No Bank object for addCustomerWizard")
         void testAddCustomerWizardNoBankObject(){
             //stub
         }
@@ -212,44 +216,44 @@ public class BankTest {
     class TestAddCustomer{
         //ToDo: finish 
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("addCustomer should pass")
         void testAddCustomer() {
             //stub
         }
         
         @Test
-        @DisplayName("FirstName is null")
+        @DisplayName("FirstName is null for addCustomer")
         void testAddCustomerNullFirstName() {
             //stub
         }
         
         
         @Test
-        @DisplayName("LastName is null")
+        @DisplayName("LastName is null for addCustomer")
         void testAddCustomerNullLastName() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object and no firstName")
+        @DisplayName("No Bank Object and no firstName for addCustomer")
         void testAddCustomerNoBankObject() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object and no firstName")
+        @DisplayName("No Bank Object and no firstName for addCustomer")
         void testAddCustomerNoBankObjectAndNoFirstName() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object and no lastName")
+        @DisplayName("No Bank Object and no lastName for addCustomer")
         void testAddCustomerNoBankObjectAndNoLastName() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object, no lastName, and no firstName")
+        @DisplayName("No Bank Object, no lastName, and no firstName for addCustomer")
         void testAddCustomerNoBankObjectNoLastNameAndNoFirstName() {
             //stub
         }
@@ -262,21 +266,19 @@ public class BankTest {
     class TestRemoveCustomer{
         //ToDo: finish 
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("removeCustomer should pass")
         void testRemoveCustomer() {
             //stub
         }
-        
-        
-        
+          
         @Test
-        @DisplayName("No customer ID")
+        @DisplayName("No customer ID for removeCustomer")
         void testRemoveCustomerNullCustomerId() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object passed ")
+        @DisplayName("No Bank Object passed for removeCustomer")
         void testRemoveCustomerNoBankObject() {
             //stub
         }
@@ -289,25 +291,25 @@ public class BankTest {
     class TestGetAllCustomers{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getAllCustomers should pass")
         void testGetAllCustomers() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object")
+        @DisplayName("No Bank Object for getAllCustomers")
         void testGetAllCustomersNoBankObject() {
             //stub
         }
         
         @Test
-        @DisplayName("No Expected Result")
+        @DisplayName("No Expected Result for getAllCustomers")
         void testGetAllCustomerNullExpResult() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object and no Expected Result")
+        @DisplayName("No Bank Object and no Expected Result for getAllCustomers")
         void testGetAllCustomersNoBankObjectAndNullExpResult() {
             //stub
         }
@@ -321,25 +323,25 @@ public class BankTest {
     class TestGetCustomer_String{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getCustomer(String customerId) should pass")
         void testGetCustomer_String() {
             //stub
         }
         
         @Test
-        @DisplayName("Customer ID number is empty")
+        @DisplayName("Customer ID number is empty for getCustomer(String customerId)")
         void testGetCustomer_StringBlankId() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object")
+        @DisplayName("No Bank Object for getCustomer(String customerId)")
         void testGetCustomer_StringNoBankObjct() {
             //stub
         }
         
         @Test
-        @DisplayName("expResult is null")
+        @DisplayName("expResult is null for getCustomer(String customerId)")
         void testGetCustomer_StringNoCustomerObjct() {
             //stub
         }
