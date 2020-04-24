@@ -31,6 +31,7 @@ public class BankTest {
     // initailiser
     @BeforeEach
     void init(){
+        //ToDo: finish
         NAME = "";
         bank = new Bank(NAME);
         insufficientFundsPenalty = 10.00;
@@ -142,13 +143,7 @@ public class BankTest {
         void TestGetNameNull(){
             NAME = null;
         }
-        
-        @Test
-        @DisplayName("Name cannot be an empty String")
-        void TestGetNameEmptyString(){
-            NAME = "";
-        }
-        
+
     }
 
     /**
@@ -231,7 +226,7 @@ public class BankTest {
      */
     @Nested
     class TestAddCustomer{
-        //ToDo: finish
+        //ToDo: finish 
         @Test
         @DisplayName("This should pass")
         void testAddCustomer() {
@@ -316,7 +311,7 @@ public class BankTest {
      */
     @Nested
     class TestRemoveCustomer{
-        //ToDo: finish
+        //ToDo: finish 
         @Test
         @DisplayName("This should pass")
         void testRemoveCustomer() {
