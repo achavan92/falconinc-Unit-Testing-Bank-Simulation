@@ -72,10 +72,7 @@ public class BankTest {
         @Test
         @DisplayName("This should pass")
         void testGetInsufficientFundsPenalty(){
-            Bank instance = bank;
-            double expResult = 0.0;
-            double result = instance.getInsufficientFundsPenalty();
-            assertEquals(expResult, result, insufficientFundsPenalty);
+            //stub
         }
         
         @Test
