@@ -32,7 +32,7 @@ public class BankTest {
     // test fixtures 
     @BeforeEach
     void setUp(){
-        //ToDo: finish
+        //NOTE: may need to be fixed
         custName = "Name";
         insufficientFundsPenalty = 10.00;
         bank = new Bank(custName);
