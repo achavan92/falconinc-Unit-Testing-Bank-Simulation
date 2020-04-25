@@ -26,6 +26,7 @@ public class BankTest {
     String custName;
     double insufficientFundsPenalty;  
     Bank bank;
+    Map<String, Customer> customers;
 
     
     // test fixtures 
@@ -35,8 +36,11 @@ public class BankTest {
         custName = "Name";
         insufficientFundsPenalty = 10.00;
         bank = new Bank(custName);
+        customers = new HashMap<>();
 
     }
+    
+    // NOTE: Tests below are not being executed when tests are ran.
     
     //constructor
     /**
@@ -44,8 +48,6 @@ public class BankTest {
      */
     @Nested
     class ConstructorTest{
-        //ToDo: finish
-        // NOTE: Tests below are not being executed when tests are ran.
         @Test
         @DisplayName("This should pass")
         void BankConstructorTest(String name){
@@ -72,38 +74,40 @@ public class BankTest {
      */
     @Nested
     class TestGetInsufficientFundsPenalty{
-        //ToDo: finish
         @Test
         @DisplayName("getInsufficientFundsPenalty should pass")
         void testGetInsufficientFundsPenalty(){
             //stub
             double insufficientFundsPenalty = 10.00;
-            assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty), "Will it be read???");//No!
-        }
+            Bank instance = bank;
+            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+          }
         
         @Test
         @DisplayName("Negative amount for insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyNegativeAmount(){
             //stub
             double insufficientFundsPenalty = -10.00;
-            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
+            Bank instance = bank;
+            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
         }
         
         @Test
         @DisplayName("Amount over insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyOverAmount(){
            //stub
-            double insufficientFundsPenalty = 10.01;
-            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
+           double insufficientFundsPenalty = 10.01;
+            Bank instance = bank;
+            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
         }
         
         @Test
         @DisplayName("Amount under insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyUnderAmount(){
             //stub
-             double insufficientFundsPenalty = 9.00;
-            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
-        
+            double insufficientFundsPenalty = 9.99;
+            Bank instance = bank;
+            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
         }
         
     }
@@ -113,7 +117,6 @@ public class BankTest {
      */
     @Nested
     class TestSetInsufficientFundsPenalty{
-        //ToDo: finish
         @Test
         @DisplayName("setInsufficientFundsPenalty should pass")
         void testSetInsufficientFundsPenalty(double insufficientFunds){
@@ -134,19 +137,22 @@ public class BankTest {
      */
     @Nested
     class TestGetName{
-        //ToDo: redo
         @Test
         @DisplayName("getName should pass")
         void TestGetName(){
-            String bankName = custName;
-            assertDoesNotThrow( () -> bank = new Bank(bankName), "Will it be read???");//No!
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.getNAME();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("Name cannot be null in getName")
         void TestGetNameNull(){
-            String bankName = null;
-            assertThrows( IllegalArgumentException.class, () -> bank = new Bank(bankName), "Will it be read???");//No!
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.getNAME();
+            assertEquals(expResult, result);
         }
 
     }
@@ -156,17 +162,18 @@ public class BankTest {
      */
     @Nested
     class TestAddAcountWizard {
-       //ToDo: redo 
         @Test
         @DisplayName("addAcountWizard should pass")
         void testAddAccountWizard() {
-            //stub         
+            Bank instance = bank;
+            instance.addCustomerWizard(); 
         }
         
         @Test
         @DisplayName("No Bank object for addAccountWizard")
         void testAddAccountWizardNullBank() {
-            //stub 
+            Bank instance = null;
+            instance.addCustomerWizard();  
         }
         
     }
@@ -176,29 +183,40 @@ public class BankTest {
      */
     @Nested
     class TestGetAllAccounts{
-        //ToDo: finish methods
         @Test
         @DisplayName("testGetAllAccounts should pass")
         void testGetAllAccounts(){
-            //stub
+            Bank instance = bank;
+            SortedSet<Account> expResult = instance.getAllAccounts();
+            SortedSet<Account> result = instance.getAllAccounts();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("Bank object is null for testGetAllAccounts")
         void testGetAllAccountsNoBankObject(){
-            //stub
+            Bank instance = null;
+            SortedSet<Account> expResult = instance.getAllAccounts();
+            SortedSet<Account> result = instance.getAllAccounts();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("expected results is null for testGetAllAccounts")
         void testGetAllAccountsNullEptResult(){
-            //stub
+            Bank instance = bank;
+            SortedSet<Account> expResult = null;
+            SortedSet<Account> result = instance.getAllAccounts();
+            assertEquals(expResult, result);
         }
               
         @Test
         @DisplayName("Bank object is null and expected results is null for testGetAllAccounts")
         void testGetAllAccountsNoBankObjectAndNullEptResult(){
-            //stub
+            Bank instance = null;
+            SortedSet<Account> expResult = null;
+            SortedSet<Account> result = instance.getAllAccounts();
+            assertEquals(expResult, result);
         }
     }
 
@@ -207,17 +225,18 @@ public class BankTest {
      */
     @Nested
     class TestAddCustomerWizard{
-        //ToDo: finish
         @Test
         @DisplayName("addCustomerWizard should pass")
         void testAddCustomerWizard(){
-            //stub
+            Bank instance = bank;
+        instance.addCustomerWizard();
         }
         
         @Test
         @DisplayName("No Bank object for addCustomerWizard")
         void testAddCustomerWizardNoBankObject(){
-            //stub
+            Bank instance = null;
+            instance.addCustomerWizard();
         }
         
     }
@@ -227,48 +246,74 @@ public class BankTest {
      */
     @Nested
     class TestAddCustomer{
-        //ToDo: finish 
         @Test
         @DisplayName("addCustomer should pass")
         void testAddCustomer() {
-            //stub
+            String lastName = "Doe";
+            String firstName = "John";
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("FirstName is null for addCustomer")
         void testAddCustomerNullFirstName() {
-            //stub
+            String lastName = "Doe";
+            String firstName = null;
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         
         @Test
         @DisplayName("LastName is null for addCustomer")
         void testAddCustomerNullLastName() {
-            //stub
+            String lastName = null;
+            String firstName = "John";
+            Bank instance = bank;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object and no firstName for addCustomer")
         void testAddCustomerNoBankObject() {
-            //stub
+            String lastName = "Doe";
+            String firstName = null;
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
-        @Test
-        @DisplayName("No Bank Object and no firstName for addCustomer")
-        void testAddCustomerNoBankObjectAndNoFirstName() {
-            //stub
-        }
         
         @Test
         @DisplayName("No Bank Object and no lastName for addCustomer")
         void testAddCustomerNoBankObjectAndNoLastName() {
             //stub
+            String lastName = null;
+            String firstName = "John";
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object, no lastName, and no firstName for addCustomer")
         void testAddCustomerNoBankObjectNoLastNameAndNoFirstName() {
             //stub
+            String lastName = null;
+            String firstName = null;
+            Bank instance = null;
+            String expResult = "";
+            String result = instance.addCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
     }
 
@@ -277,23 +322,37 @@ public class BankTest {
      */
     @Nested
     class TestRemoveCustomer{
-        //ToDo: finish 
         @Test
         @DisplayName("removeCustomer should pass")
         void testRemoveCustomer() {
             //stub
+            String customerId = "";
+            Bank instance = bank;
+            instance.removeCustomer(customerId);
         }
           
         @Test
-        @DisplayName("No customer ID for removeCustomer")
+        @DisplayName("No customer ID for removeCustomer")    
         void testRemoveCustomerNullCustomerId() {
-            //stub
+            String customerId = null;
+            Bank instance = bank;
+            instance.removeCustomer(customerId);
         }
         
         @Test
         @DisplayName("No Bank Object passed for removeCustomer")
         void testRemoveCustomerNoBankObject() {
-            //stub
+            String customerId = "";
+            Bank instance = null;
+            instance.removeCustomer(customerId);
+        }
+        
+        @Test
+        @DisplayName("No Bank Object passed and no customer ID for removeCustomer")
+        void testRemoveCustomerNoBankObjectOrCustomerId() {
+            String customerId = null;
+            Bank instance = null;
+            instance.removeCustomer(customerId);
         }
     }
 
@@ -302,29 +361,40 @@ public class BankTest {
      */
     @Nested
     class TestGetAllCustomers{
-        //ToDo: finish
         @Test
         @DisplayName("getAllCustomers should pass")
         void testGetAllCustomers() {
-            //stub
+            Bank instance = bank;
+            SortedSet<Customer> expResult = instance.getAllCustomers();
+            SortedSet<Customer> result = instance.getAllCustomers();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object for getAllCustomers")
         void testGetAllCustomersNoBankObject() {
-            //stub
+            Bank instance = null;
+            SortedSet<Customer> expResult = instance.getAllCustomers();
+            SortedSet<Customer> result = instance.getAllCustomers();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Expected Result for getAllCustomers")
         void testGetAllCustomerNullExpResult() {
-            //stub
+            Bank instance = bank;
+            SortedSet<Customer> expResult = null;
+            SortedSet<Customer> result = instance.getAllCustomers();
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object and no Expected Result for getAllCustomers")
         void testGetAllCustomersNoBankObjectAndNullExpResult() {
-            //stub
+            Bank instance = null;
+            SortedSet<Customer> expResult = null;
+            SortedSet<Customer> result = instance.getAllCustomers();
+            assertEquals(expResult, result);
         }
      
     }
@@ -334,29 +404,44 @@ public class BankTest {
      */
     @Nested
     class TestGetCustomer_String{
-        //ToDo: finish
         @Test
         @DisplayName("getCustomer(String customerId) should pass")
         void testGetCustomer_String() {
-            //stub
+            String customerId = "0";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("Customer ID number is empty for getCustomer(String customerId)")
         void testGetCustomer_StringBlankId() {
-            //stub
+            String customerId = null;
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object for getCustomer(String customerId)")
         void testGetCustomer_StringNoBankObjct() {
-            //stub
+            String customerId = "0";
+            Bank instance = null;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("expResult is null for getCustomer(String customerId)")
         void testGetCustomer_StringNoCustomerObjct() {
-            //stub
+            String customerId = "0";
+            Bank instance = bank;
+            Customer expResult = null;
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
         }
         
     }
@@ -366,35 +451,59 @@ public class BankTest {
      */
     @Nested
     class TestGetCustomer_String_String{
-        //ToDo: finish
         @Test
         @DisplayName("getCustomer(String lastName, String firstName) should pass")
         void testGetCustomer_String_String() {
-            //stub
+            String lastName = "Doe";
+            String firstName = "John";
+            Bank instance = bank;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("FirstName is an Empty String for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoFirstName() {
-            //stub
+            String lastName = "Doe";
+            String firstName = null;
+            Bank instance = bank;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("LastName is an empty String for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoLastName() {
-            //stub
+            String lastName = null;
+            String firstName = "John";
+            Bank instance = bank;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank object passed for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoBankObjct() {
-            //stub
+            String lastName = "Doe";
+            String firstName = "John";
+            Bank instance = null;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("Expected Result is null for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNUllExpResult() {
-            //stub
+            String lastName = "Doe";
+            String firstName = "John";
+            Bank instance = bank;
+            List<Customer> expResult = null;
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
         }
         
     }
@@ -408,25 +517,41 @@ public class BankTest {
         @Test
         @DisplayName("getCustomersAccounts should pass")
         void testGetCustomersAccounts() {
-            //stub
+            String customerId = "0";
+            Bank instance = bank;
+            List<Account> expResult = instance.getCustomersAccounts(customerId);
+            List<Account> result = instance.getCustomersAccounts(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Customer ID number for getCustomersAccounts")
         void testGetCustomersAccountsNoID() {
-            //stub
+            String customerId = null;
+            Bank instance = bank;
+            List<Account> expResult = instance.getCustomersAccounts(customerId);
+            List<Account> result = instance.getCustomersAccounts(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No Bank Object Passed for getCustomersAccounts")
         void testGetCustomersAccountsNoBankObjct() {
-            //stub
+            String customerId = "0";
+            Bank instance = null;
+            List<Account> expResult = instance.getCustomersAccounts(customerId);
+            List<Account> result = instance.getCustomersAccounts(customerId);
+            assertEquals(expResult, result);
         }
         
         @Test
         @DisplayName("No expected result for getCustomersAccounts")
         void testGetCustomersAccountsNoexpRessult() {
-            //stub
+            String customerId = "0";
+            Bank instance = bank;
+            List<Account> expResult = null;
+            List<Account> result = instance.getCustomersAccounts(customerId);
+            assertEquals(expResult, result);
         }
     }
     
