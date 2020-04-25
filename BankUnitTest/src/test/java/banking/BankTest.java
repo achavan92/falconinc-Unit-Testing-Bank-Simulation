@@ -25,8 +25,8 @@ public class BankTest {
     
     String custName;
     double insufficientFundsPenalty;  
-    Bank bank1;
-    Bank bank2;
+    Bank bank;
+
     
     // test fixtures 
     @BeforeEach
@@ -34,8 +34,8 @@ public class BankTest {
         //ToDo: finish
         custName = "Name";
         insufficientFundsPenalty = 10.00;
-        bank1 = new Bank(custName);
-        bank2 = new Bank(custName);
+        bank = new Bank(custName);
+
     }
     
     //constructor
@@ -50,14 +50,14 @@ public class BankTest {
         @DisplayName("This should pass")
         void BankConstructorTest(String name){
             custName = "";
-            assertDoesNotThrow( () -> bank1 = new Bank(custName), "Will it be read???");//No!
+            assertDoesNotThrow( () -> bank = new Bank(custName), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Name is null")
         void BankConstructorTestNullName(String name){
             custName = null;
-            assertThrows( IllegalArgumentException.class, () -> bank2 = new Bank(custName), "Will it be read???");//No!
+            assertThrows( IllegalArgumentException.class, () -> bank = new Bank(custName), "Will it be read???");//No!
         }
     }
     
@@ -77,24 +77,33 @@ public class BankTest {
         @DisplayName("getInsufficientFundsPenalty should pass")
         void testGetInsufficientFundsPenalty(){
             //stub
+            double insufficientFundsPenalty = 10.00;
+            assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Negative amount for insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyNegativeAmount(){
             //stub
+            double insufficientFundsPenalty = -10.00;
+            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Amount over insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyOverAmount(){
            //stub
+            double insufficientFundsPenalty = 10.01;
+            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Amount under insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyUnderAmount(){
             //stub
+             double insufficientFundsPenalty = 9.00;
+            assertThrows( IllegalArgumentException.class, () -> bank.getInsufficientFundsPenalty(), "Will it be read???");//No!
+        
         }
         
     }
@@ -108,13 +117,15 @@ public class BankTest {
         @Test
         @DisplayName("setInsufficientFundsPenalty should pass")
         void testSetInsufficientFundsPenalty(double insufficientFunds){
-            //stub
+            double result = 0.0 + insufficientFundsPenalty;
+            assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(result), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Wrong type for insufficientFunds")
         void testSetInsufficientFundsPenaltyWrongType(double insufficientFunds){
-            //stub
+            int result = 0 + 10;
+            assertThrows( IllegalArgumentException.class, () -> bank.setInsufficientFundsPenalty(result), "Will it be read???");//No!
         }
     }
 
@@ -127,13 +138,15 @@ public class BankTest {
         @Test
         @DisplayName("getName should pass")
         void TestGetName(){
-            //stub
+            String bankName = custName;
+            assertDoesNotThrow( () -> bank = new Bank(bankName), "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Name cannot be null in getName")
         void TestGetNameNull(){
-            //stub
+            String bankName = null;
+            assertThrows( IllegalArgumentException.class, () -> bank = new Bank(bankName), "Will it be read???");//No!
         }
 
     }
@@ -355,31 +368,31 @@ public class BankTest {
     class TestGetCustomer_String_String{
         //ToDo: finish
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getCustomer(String lastName, String firstName) should pass")
         void testGetCustomer_String_String() {
             //stub
         }
         
         @Test
-        @DisplayName("FirstName is an Empty String")
+        @DisplayName("FirstName is an Empty String for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoFirstName() {
             //stub
         }
         
         @Test
-        @DisplayName("LastName is an empty String")
+        @DisplayName("LastName is an empty String for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoLastName() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank object passed")
+        @DisplayName("No Bank object passed for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNoBankObjct() {
             //stub
         }
         
         @Test
-        @DisplayName("Expected Result is null")
+        @DisplayName("Expected Result is null for getCustomer(String lastName, String firstName)")
         void testGetCustomer_String_StringNUllExpResult() {
             //stub
         }
@@ -393,25 +406,25 @@ public class BankTest {
     class TestGetCusomersAccounts{
         
         @Test
-        @DisplayName("This should pass")
+        @DisplayName("getCustomersAccounts should pass")
         void testGetCustomersAccounts() {
             //stub
         }
         
         @Test
-        @DisplayName("No Customer ID number")
+        @DisplayName("No Customer ID number for getCustomersAccounts")
         void testGetCustomersAccountsNoID() {
             //stub
         }
         
         @Test
-        @DisplayName("No Bank Object Passed")
+        @DisplayName("No Bank Object Passed for getCustomersAccounts")
         void testGetCustomersAccountsNoBankObjct() {
             //stub
         }
         
         @Test
-        @DisplayName("No expected result")
+        @DisplayName("No expected result for getCustomersAccounts")
         void testGetCustomersAccountsNoexpRessult() {
             //stub
         }
