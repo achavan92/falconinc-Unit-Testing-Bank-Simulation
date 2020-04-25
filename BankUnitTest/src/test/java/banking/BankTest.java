@@ -52,14 +52,17 @@ public class BankTest {
         @DisplayName("This should pass")
         void BankConstructorTest(String name){
             custName = "";
-            assertDoesNotThrow( () -> bank = new Bank(custName), "Will it be read???");//No!
+            assertDoesNotThrow( () -> bank = new Bank(custName),
+                    "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Name is null")
         void BankConstructorTestNullName(String name){
             custName = null;
-            assertThrows( IllegalArgumentException.class, () -> bank = new Bank(custName), "Will it be read???");//No!
+            assertThrows( IllegalArgumentException.class,
+                    () -> bank = new Bank(custName),
+                    "Will it be read???");//No!
         }
     }
     
@@ -79,35 +82,36 @@ public class BankTest {
         void testGetInsufficientFundsPenalty(){
             //stub
             double insufficientFundsPenalty = 10.00;
-            Bank instance = bank;
-            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+            assertDoesNotThrow( ()-> bank.setInsufficientFundsPenalty(insufficientFundsPenalty) , 
+                    "Will it be read???");//No!
           }
         
         @Test
         @DisplayName("Negative amount for insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyNegativeAmount(){
             //stub
-            double insufficientFundsPenalty = -10.00;
-            Bank instance = bank;
-            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+            double insufficientFundsPenalty = -10.00;            
+            assertThrows( IllegalArgumentException.class,
+                    () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
+                    "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Amount over insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyOverAmount(){
-           //stub
            double insufficientFundsPenalty = 10.01;
-            Bank instance = bank;
-            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+           assertThrows( IllegalArgumentException.class,
+                   () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
+                   "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Amount under insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyUnderAmount(){
-            //stub
             double insufficientFundsPenalty = 9.99;
-            Bank instance = bank;
-            instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+            assertThrows( IllegalArgumentException.class,
+                   () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
+                   "Will it be read???");//No!
         }
         
     }
@@ -121,14 +125,17 @@ public class BankTest {
         @DisplayName("setInsufficientFundsPenalty should pass")
         void testSetInsufficientFundsPenalty(double insufficientFunds){
             double result = 0.0 + insufficientFundsPenalty;
-            assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(result), "Will it be read???");//No!
+            assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(result),
+                    "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("Wrong type for insufficientFunds")
         void testSetInsufficientFundsPenaltyWrongType(double insufficientFunds){
             int result = 0 + 10;
-            assertThrows( IllegalArgumentException.class, () -> bank.setInsufficientFundsPenalty(result), "Will it be read???");//No!
+            assertThrows( IllegalArgumentException.class, 
+                    () -> bank.setInsufficientFundsPenalty(result),
+                    "Will it be read???");//No!
         }
     }
 
@@ -166,14 +173,16 @@ public class BankTest {
         @DisplayName("addAcountWizard should pass")
         void testAddAccountWizard() {
             Bank instance = bank;
-            instance.addCustomerWizard(); 
+            assertDoesNotThrow( () -> instance.addAccountWizard(),
+                    "Will it be read???");//No!
         }
         
         @Test
         @DisplayName("No Bank object for addAccountWizard")
         void testAddAccountWizardNullBank() {
-            Bank instance = null;
-            instance.addCustomerWizard();  
+            Bank instance = null; 
+            assertThrows( IllegalArgumentException.class,
+                   () -> instance.addAccountWizard(), "Will it be read???");//No!
         }
         
     }
@@ -229,14 +238,15 @@ public class BankTest {
         @DisplayName("addCustomerWizard should pass")
         void testAddCustomerWizard(){
             Bank instance = bank;
-        instance.addCustomerWizard();
+            assertDoesNotThrow( () ->instance.addCustomerWizard(), "Does it pass");
         }
         
         @Test
         @DisplayName("No Bank object for addCustomerWizard")
         void testAddCustomerWizardNoBankObject(){
             Bank instance = null;
-            instance.addCustomerWizard();
+             assertThrows( IllegalArgumentException.class,
+                   () -> instance.addCustomerWizard(), "Will it be read???");//No!
         }
         
     }
@@ -295,7 +305,6 @@ public class BankTest {
         @Test
         @DisplayName("No Bank Object and no lastName for addCustomer")
         void testAddCustomerNoBankObjectAndNoLastName() {
-            //stub
             String lastName = null;
             String firstName = "John";
             Bank instance = null;
@@ -307,7 +316,6 @@ public class BankTest {
         @Test
         @DisplayName("No Bank Object, no lastName, and no firstName for addCustomer")
         void testAddCustomerNoBankObjectNoLastNameAndNoFirstName() {
-            //stub
             String lastName = null;
             String firstName = null;
             Bank instance = null;
@@ -325,10 +333,9 @@ public class BankTest {
         @Test
         @DisplayName("removeCustomer should pass")
         void testRemoveCustomer() {
-            //stub
-            String customerId = "";
+            String customerId = "0";
             Bank instance = bank;
-            instance.removeCustomer(customerId);
+            assertDoesNotThrow(() -> instance.removeCustomer(customerId), "Will it be read???");//No!
         }
           
         @Test
@@ -336,15 +343,18 @@ public class BankTest {
         void testRemoveCustomerNullCustomerId() {
             String customerId = null;
             Bank instance = bank;
-            instance.removeCustomer(customerId);
+            assertThrows( IllegalArgumentException.class,
+                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
+            
         }
         
         @Test
         @DisplayName("No Bank Object passed for removeCustomer")
         void testRemoveCustomerNoBankObject() {
-            String customerId = "";
+            String customerId = "0";
             Bank instance = null;
-            instance.removeCustomer(customerId);
+            assertThrows( IllegalArgumentException.class,
+                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
         }
         
         @Test
@@ -352,53 +362,16 @@ public class BankTest {
         void testRemoveCustomerNoBankObjectOrCustomerId() {
             String customerId = null;
             Bank instance = null;
-            instance.removeCustomer(customerId);
+            assertThrows( IllegalArgumentException.class,
+                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
         }
     }
 
     /**
-     * Test of getAllCustomers method, of class Bank.
+     * NOTE: There are no tests for the getAllCustomers method of class Bank
+     * due to it not taking any arguments.
      */
-    @Nested
-    class TestGetAllCustomers{
-        @Test
-        @DisplayName("getAllCustomers should pass")
-        void testGetAllCustomers() {
-            Bank instance = bank;
-            SortedSet<Customer> expResult = instance.getAllCustomers();
-            SortedSet<Customer> result = instance.getAllCustomers();
-            assertEquals(expResult, result);
-        }
-        
-        @Test
-        @DisplayName("No Bank Object for getAllCustomers")
-        void testGetAllCustomersNoBankObject() {
-            Bank instance = null;
-            SortedSet<Customer> expResult = instance.getAllCustomers();
-            SortedSet<Customer> result = instance.getAllCustomers();
-            assertEquals(expResult, result);
-        }
-        
-        @Test
-        @DisplayName("No Expected Result for getAllCustomers")
-        void testGetAllCustomerNullExpResult() {
-            Bank instance = bank;
-            SortedSet<Customer> expResult = null;
-            SortedSet<Customer> result = instance.getAllCustomers();
-            assertEquals(expResult, result);
-        }
-        
-        @Test
-        @DisplayName("No Bank Object and no Expected Result for getAllCustomers")
-        void testGetAllCustomersNoBankObjectAndNullExpResult() {
-            Bank instance = null;
-            SortedSet<Customer> expResult = null;
-            SortedSet<Customer> result = instance.getAllCustomers();
-            assertEquals(expResult, result);
-        }
-     
-    }
-
+    
     /**
      * Test of getCustomer method, of class Bank.
      */
