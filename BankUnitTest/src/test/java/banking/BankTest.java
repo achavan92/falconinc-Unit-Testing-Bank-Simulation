@@ -6,9 +6,7 @@
 
 package banking;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.SortedSet;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +33,6 @@ public class BankTest {
         custName = "Name";
         insufficientFundsPenalty = 10.00;
         bank = new Bank(custName);
-
     }
     
     // NOTE: Tests below are not being executed when tests are ran.
@@ -178,7 +175,7 @@ public class BankTest {
         void testAddAccountWizardNullBank() {
             Bank instance = null; 
             assertThrows( IllegalArgumentException.class,
-                   () -> instance.addAccountWizard(), "Will it be read???");//No!
+                   () -> instance.addAccountWizard(), "addAccountWizard passed a null bank object");
         }
         
     }
@@ -243,7 +240,7 @@ public class BankTest {
         void testAddCustomerWizardNoBankObject(){
             Bank instance = null;
              assertThrows( IllegalArgumentException.class,
-                   () -> instance.addCustomerWizard(), "Will it be read???");//No!
+                   () -> instance.addCustomerWizard(), "addCustomerWizard passed a null bank object");
         }
         
     }
