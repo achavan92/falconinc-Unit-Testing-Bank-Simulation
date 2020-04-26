@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package banking;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.SortedSet;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -17,395 +20,203 @@ import org.junit.jupiter.api.Test;
  */
 public class BankTest {
     
-   Bank bank;
-    String NAME;
-    double insufficientFundsPenalty;  
+    public BankTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
 
-    // initailiser
-    @BeforeEach
-    void init(){
-        //ToDo: finish
-        NAME = "";
-        bank = new Bank(NAME);
-        insufficientFundsPenalty = 10.00;
-    }
-    
-    //constructor
     /**
-     * Test Constructor of class Bank.
+     * Test of main method, of class Bank.
      */
-    @Nested
-    class ConstructorTest{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void BankConstructorTest(String name){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Name is null")
-        void BankConstructorTestNullName(String name){
-            //stub;
-        }
+    @Test
+    public void testMain() {
+        System.out.println("main");
+        String[] args = null;
+        Bank.main(args);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
-    
-    /**
-     * NOTE: I didn't believe it to be necessary to have
-     * test cases for main method, of class Bank. This is
-     * due to there being no initialization tasks in this project. 
-     */
 
     /**
      * Test of getInsufficientFundsPenalty method, of class Bank.
      */
-    @Nested
-    class TestGetInsufficientFundsPenalty{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testGetInsufficientFundsPenalty(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Negative amount for insufficientFundsPenalty")
-        void testGetInsufficientFundsPenaltyNegativeAmount(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Amount over insufficientFundsPenalty")
-        void testGetInsufficientFundsPenaltyOverAmount(){
-           //stub
-        }
-        
-        @Test
-        @DisplayName("Amount under insufficientFundsPenalty")
-        void testGetInsufficientFundsPenaltyUnderAmount(){
-            //stub
-        }
-        
+    @Test
+    public void testGetInsufficientFundsPenalty() {
+        System.out.println("getInsufficientFundsPenalty");
+        Bank instance = null;
+        double expResult = 0.0;
+        double result = instance.getInsufficientFundsPenalty();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of setInsufficientFundsPenalty method, of class Bank.
      */
-    @Nested
-    class TestSetInsufficientFundsPenalty{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testSetInsufficientFundsPenalty(double insufficientFunds){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Wrong type for insufficientFunds")
-        void testSetInsufficientFundsPenaltyWrongType(double insufficientFunds){
-            //stub
-        }
+    @Test
+    public void testSetInsufficientFundsPenalty() {
+        System.out.println("setInsufficientFundsPenalty");
+        double insufficientFundsPenalty = 0.0;
+        Bank instance = null;
+        instance.setInsufficientFundsPenalty(insufficientFundsPenalty);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getNAME method, of class Bank.
      */
-    @Nested
-    class TestGetName{
-        //ToDo: redo
-        @Test
-        @DisplayName("This should pass")
-        void TestGetName(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Name cannot be null")
-        void TestGetNameNull(){
-            //stub
-        }
-
+    @Test
+    public void testGetNAME() {
+        System.out.println("getNAME");
+        Bank instance = null;
+        String expResult = "";
+        String result = instance.getNAME();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of addAccountWizard method, of class Bank.
      */
-    @Nested
-    class TestAddAcountWizard {
-       //ToDo: redo 
-        @Test
-        @DisplayName("This should pass")
-        void testAddAccountWizard() {
-            //stub         
-        }
-        
-        @Test
-        @DisplayName("No Bank object")
-        void testAddAccountWizardNullBank() {
-            //stub 
-        }
-        
+    @Test
+    public void testAddAccountWizard() {
+        System.out.println("addAccountWizard");
+        Bank instance = null;
+        instance.addAccountWizard();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getAllAccounts method, of class Bank.
      */
-    @Nested
-    class TestGetAllAccounts{
-        //ToDo: finish methods
-        @Test
-        @DisplayName("This should pass")
-        void testGetAllAccounts(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Bank object is null")
-        void testGetAllAccountsNoBankObject(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("expected results is null")
-        void testGetAllAccountsNullEptResult(){
-            //stub
-        }
-              
-        @Test
-        @DisplayName("Bank object is null and expected results is null")
-        void testGetAllAccountsNoBankObjectAndNullEptResult(){
-            //stub
-        }
+    @Test
+    public void testGetAllAccounts() {
+        System.out.println("getAllAccounts");
+        Bank instance = null;
+        SortedSet<Account> expResult = null;
+        SortedSet<Account> result = instance.getAllAccounts();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of addCustomerWizard method, of class Bank.
      */
-    @Nested
-    class TestAddCustomerWizard{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testAddCustomerWizard(){
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank object")
-        void testAddCustomerWizardNoBankObject(){
-            //stub
-        }
-        
+    @Test
+    public void testAddCustomerWizard() {
+        System.out.println("addCustomerWizard");
+        Bank instance = null;
+        instance.addCustomerWizard();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of addCustomer method, of class Bank.
      */
-    @Nested
-    class TestAddCustomer{
-        //ToDo: finish 
-        @Test
-        @DisplayName("This should pass")
-        void testAddCustomer() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("FirstName is null")
-        void testAddCustomerNullFirstName() {
-            //stub
-        }
-        
-        
-        @Test
-        @DisplayName("LastName is null")
-        void testAddCustomerNullLastName() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object and no firstName")
-        void testAddCustomerNoBankObject() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object and no firstName")
-        void testAddCustomerNoBankObjectAndNoFirstName() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object and no lastName")
-        void testAddCustomerNoBankObjectAndNoLastName() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object, no lastName, and no firstName")
-        void testAddCustomerNoBankObjectNoLastNameAndNoFirstName() {
-            //stub
-        }
+    @Test
+    public void testAddCustomer() {
+        System.out.println("addCustomer");
+        String lastName = "";
+        String firstName = "";
+        Bank instance = null;
+        String expResult = "";
+        String result = instance.addCustomer(lastName, firstName);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of removeCustomer method, of class Bank.
      */
-    @Nested
-    class TestRemoveCustomer{
-        //ToDo: finish 
-        @Test
-        @DisplayName("This should pass")
-        void testRemoveCustomer() {
-            //stub
-        }
-        
-        
-        
-        @Test
-        @DisplayName("No customer ID")
-        void testRemoveCustomerNullCustomerId() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object passed ")
-        void testRemoveCustomerNoBankObject() {
-            //stub
-        }
+    @Test
+    public void testRemoveCustomer() {
+        System.out.println("removeCustomer");
+        String customerId = "";
+        Bank instance = null;
+        instance.removeCustomer(customerId);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getAllCustomers method, of class Bank.
      */
-    @Nested
-    class TestGetAllCustomers{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testGetAllCustomers() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object")
-        void testGetAllCustomersNoBankObject() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Expected Result")
-        void testGetAllCustomerNullExpResult() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object and no Expected Result")
-        void testGetAllCustomersNoBankObjectAndNullExpResult() {
-            //stub
-        }
-     
+    @Test
+    public void testGetAllCustomers() {
+        System.out.println("getAllCustomers");
+        Bank instance = null;
+        SortedSet<Customer> expResult = null;
+        SortedSet<Customer> result = instance.getAllCustomers();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getCustomer method, of class Bank.
      */
-    @Nested
-    class TestGetCustomer_String{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testGetCustomer_String() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Customer ID number is empty")
-        void testGetCustomer_StringBlankId() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object")
-        void testGetCustomer_StringNoBankObjct() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("expResult is null")
-        void testGetCustomer_StringNoCustomerObjct() {
-            //stub
-        }
-        
+    @Test
+    public void testGetCustomer_String() {
+        System.out.println("getCustomer");
+        String customerId = "";
+        Bank instance = null;
+        Customer expResult = null;
+        Customer result = instance.getCustomer(customerId);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getCustomer method, of class Bank.
      */
-    @Nested
-    class TestGetCustomer_String_String{
-        //ToDo: finish
-        @Test
-        @DisplayName("This should pass")
-        void testGetCustomer_String_String() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("FirstName is an Empty String")
-        void testGetCustomer_String_StringNoFirstName() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("LastName is an empty String")
-        void testGetCustomer_String_StringNoLastName() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank object passed")
-        void testGetCustomer_String_StringNoBankObjct() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("Expected Result is null")
-        void testGetCustomer_String_StringNUllExpResult() {
-            //stub
-        }
-        
+    @Test
+    public void testGetCustomer_String_String() {
+        System.out.println("getCustomer");
+        String lastName = "";
+        String firstName = "";
+        Bank instance = null;
+        List<Customer> expResult = null;
+        List<Customer> result = instance.getCustomer(lastName, firstName);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getCustomersAccounts method, of class Bank.
      */
-    @Nested
-    class TestGetCusomersAccounts{
-        
-        @Test
-        @DisplayName("This should pass")
-        void testGetCustomersAccounts() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Customer ID number")
-        void testGetCustomersAccountsNoID() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No Bank Object Passed")
-        void testGetCustomersAccountsNoBankObjct() {
-            //stub
-        }
-        
-        @Test
-        @DisplayName("No expected result")
-        void testGetCustomersAccountsNoexpRessult() {
-            //stub
-        }
+    @Test
+    public void testGetCustomersAccounts() {
+        System.out.println("getCustomersAccounts");
+        String customerId = "";
+        Bank instance = null;
+        List<Account> expResult = null;
+        List<Account> result = instance.getCustomersAccounts(customerId);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
