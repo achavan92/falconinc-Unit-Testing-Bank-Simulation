@@ -26,7 +26,6 @@ public class BankTest {
     String custName;
     double insufficientFundsPenalty;  
     Bank bank;
-    Map<String, Customer> customers;
 
     
     // test fixtures 
@@ -36,13 +35,11 @@ public class BankTest {
         custName = "Name";
         insufficientFundsPenalty = 10.00;
         bank = new Bank(custName);
-        customers = new HashMap<>();
 
     }
     
     // NOTE: Tests below are not being executed when tests are ran.
     
-    //constructor
     /**
      * Test Constructor of class Bank.
      */
@@ -53,7 +50,7 @@ public class BankTest {
         void BankConstructorTest(String name){
             custName = "";
             assertDoesNotThrow( () -> bank = new Bank(custName),
-                    "Will it be read???");//No!
+                    "Bank Constructor threw an exception when it shouldnt have.");
         }
         
         @Test
@@ -62,7 +59,7 @@ public class BankTest {
             custName = null;
             assertThrows( IllegalArgumentException.class,
                     () -> bank = new Bank(custName),
-                    "Will it be read???");//No!
+                    "Bank constructor took a null name");
         }
     }
     
@@ -83,17 +80,16 @@ public class BankTest {
             //stub
             double insufficientFundsPenalty = 10.00;
             assertDoesNotThrow( ()-> bank.setInsufficientFundsPenalty(insufficientFundsPenalty) , 
-                    "Will it be read???");//No!
+                    "getInsufficientFundsPenalty() threw an exception when it shouldnt have.");
           }
         
         @Test
         @DisplayName("Negative amount for insufficientFundsPenalty")
         void testGetInsufficientFundsPenaltyNegativeAmount(){
-            //stub
             double insufficientFundsPenalty = -10.00;            
             assertThrows( IllegalArgumentException.class,
                     () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
-                    "Will it be read???");//No!
+                    "insufficientFundsPenalty took a negative double");
         }
         
         @Test
@@ -102,7 +98,7 @@ public class BankTest {
            double insufficientFundsPenalty = 10.01;
            assertThrows( IllegalArgumentException.class,
                    () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
-                   "Will it be read???");//No!
+                   "insufficientFundsPenalty took double over 10.00");
         }
         
         @Test
@@ -111,7 +107,7 @@ public class BankTest {
             double insufficientFundsPenalty = 9.99;
             assertThrows( IllegalArgumentException.class,
                    () -> bank.setInsufficientFundsPenalty(insufficientFundsPenalty),
-                   "Will it be read???");//No!
+                   "insufficientFundsPenalty took double under 10.00");
         }
         
     }
@@ -126,16 +122,16 @@ public class BankTest {
         void testSetInsufficientFundsPenalty(double insufficientFunds){
             double result = 0.0 + insufficientFundsPenalty;
             assertDoesNotThrow( () -> bank.setInsufficientFundsPenalty(result),
-                    "Will it be read???");//No!
+                    "setInsufficientFundsPenalty threw an exception when it shouldnt have.");
         }
         
         @Test
-        @DisplayName("Wrong type for insufficientFunds")
+        @DisplayName("Wrong type for setInsufficientFunds")
         void testSetInsufficientFundsPenaltyWrongType(double insufficientFunds){
             int result = 0 + 10;
             assertThrows( IllegalArgumentException.class, 
                     () -> bank.setInsufficientFundsPenalty(result),
-                    "Will it be read???");//No!
+                    "setInsufficientFunds took an int instead of double");
         }
     }
 
@@ -174,7 +170,7 @@ public class BankTest {
         void testAddAccountWizard() {
             Bank instance = bank;
             assertDoesNotThrow( () -> instance.addAccountWizard(),
-                    "Will it be read???");//No!
+                    "addAcountWizard threw an exception when it shouldnt have.");
         }
         
         @Test
@@ -238,7 +234,8 @@ public class BankTest {
         @DisplayName("addCustomerWizard should pass")
         void testAddCustomerWizard(){
             Bank instance = bank;
-            assertDoesNotThrow( () ->instance.addCustomerWizard(), "Does it pass");
+            assertDoesNotThrow( () ->instance.addCustomerWizard(),
+                    "addCustomerWizard threw an exception when it shouldnt have.");
         }
         
         @Test
@@ -335,7 +332,8 @@ public class BankTest {
         void testRemoveCustomer() {
             String customerId = "0";
             Bank instance = bank;
-            assertDoesNotThrow(() -> instance.removeCustomer(customerId), "Will it be read???");//No!
+            assertDoesNotThrow(() -> instance.removeCustomer(customerId),
+                    "removeCustomer threw an exception when it shouldnt have.");
         }
           
         @Test
@@ -344,7 +342,8 @@ public class BankTest {
             String customerId = null;
             Bank instance = bank;
             assertThrows( IllegalArgumentException.class,
-                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
+                   () -> instance.removeCustomer(customerId),
+                   "removeCustomer took null customerId");
             
         }
         
@@ -354,7 +353,8 @@ public class BankTest {
             String customerId = "0";
             Bank instance = null;
             assertThrows( IllegalArgumentException.class,
-                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
+                   () -> instance.removeCustomer(customerId),
+                   "removeCustomer took null bank object");
         }
         
         @Test
@@ -363,7 +363,8 @@ public class BankTest {
             String customerId = null;
             Bank instance = null;
             assertThrows( IllegalArgumentException.class,
-                   () -> instance.removeCustomer(customerId), "Will it be read???");//No!
+                   () -> instance.removeCustomer(customerId),
+                   "removeCustomer took no customer ID and null bank object");
         }
     }
 
@@ -413,6 +414,28 @@ public class BankTest {
             String customerId = "0";
             Bank instance = bank;
             Customer expResult = null;
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("Customer ID number should not be a letter(s) in getCustomer(String customerId) " +
+                "(Only Positive numbers!!")
+        void testGetCustomer_StringLetterAsID() {
+            String customerId = "a";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
+            Customer result = instance.getCustomer(customerId);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("Customer ID number should not be a negative number in getCustomer(String customerId) "+
+                "(Only Positive numbers!!")
+        void testGetCustomer_StringNegativeNumbAsID() {
+            String customerId = "-1";
+            Bank instance = bank;
+            Customer expResult = instance.getCustomer(customerId);
             Customer result = instance.getCustomer(customerId);
             assertEquals(expResult, result);
         }
@@ -475,6 +498,28 @@ public class BankTest {
             String firstName = "John";
             Bank instance = bank;
             List<Customer> expResult = null;
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("LastName cannot have numbers in getCustomer(String lastName, String firstName)")
+        void testGetCustomer_String_StringNumbersInLastName() {
+            String lastName = "123";
+            String firstName = "John";
+            Bank instance = bank;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
+            List<Customer> result = instance.getCustomer(lastName, firstName);
+            assertEquals(expResult, result);
+        }
+        
+        @Test
+        @DisplayName("FirstName cannot have numbers in getCustomer(String lastName, String firstName)")
+        void testGetCustomer_String_StringNumbersInFirstName() {
+            String lastName = "Doe";
+            String firstName = "123";
+            Bank instance = bank;
+            List<Customer> expResult = instance.getCustomer(lastName, firstName);
             List<Customer> result = instance.getCustomer(lastName, firstName);
             assertEquals(expResult, result);
         }
