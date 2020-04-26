@@ -12,12 +12,13 @@ class SavingsAccountTest {
 	Bank bank = new Bank("bank");
 	Customer cust = new Customer(bank, "First Name", "Last Name");
 	String description;
+	double initBal;
 	SavingsAccount account1;
 	SavingsAccount account2;
 	
 	@BeforeEach
 	void init() {
-		double initBal = 100.50;
+		initBal = 100.50;
 		description = "";
 		account1 = new SavingsAccount(cust, initBal, description);
 		account2 = new SavingsAccount(cust, initBal, description);
@@ -28,10 +29,12 @@ class SavingsAccountTest {
 	@Nested
 	class ConstructorTest {
 		@Test
-		@DisplayName("Should pass Test")
+		@DisplayName("Happy path Test")
 		void SavingsAccountConstructorTest () {
 			double initBal = 100.50;
-			assertDoesNotThrow( () -> account1 = new SavingsAccount(cust, initBal, description), "Savings Account Constructor throw and exception when it shouldnt have.");
+			account1 = new SavingsAccount(cust, initBal, description);
+			double balReturn = account1.getBalance();
+			assertEquals(initBal, balReturn, "Balance shoud be " + initBal + " was " + balReturn);
 		}
 		
 		@Test
@@ -47,10 +50,15 @@ class SavingsAccountTest {
 	@Nested
 	class InterestTest{
 		@Test
-		@DisplayName("Should pass Test")
+		@DisplayName("Happy path Test")
 		void addInterestTest () {
-			double rate = 0.01;
-			assertDoesNotThrow( () -> account1.addInterestTransaction(rate), "Add interest Test throw a exception when it shouldnt have.");
+			double rate = 10.10;
+			double newBalance = initBal + rate;
+			double rateReturned;
+			
+			rateReturned = SavingsAccount.getDefaultInterestRate();
+			
+			assertEquals(rate, rateReturned,"Interest shoud be " + newBalance + " was " + rateReturned);
 		}
 		
 		@Test
@@ -66,10 +74,14 @@ class SavingsAccountTest {
 	@Nested
 	class DepositTest{
 		@Test
-		@DisplayName("Should Pass Test")
+		@DisplayName("Happy Path Test")
 		void depositTest() {
 			double amount = 100.56;
-			assertDoesNotThrow( () -> account1.deposit(amount), "Deposit throw a Illegal argument when it shouldnt have");
+			double newBalance = initBal + amount;
+			account1.deposit(amount);
+			double balReturn = account1.getBalance();
+			assertEquals(newBalance, balReturn, "Balance shoud be " + newBalance + " was " + balReturn);
+			
 		}
 		
 		@Test
@@ -92,10 +104,15 @@ class SavingsAccountTest {
 	@Nested
 	class WithdrawTest{
 		@Test
-		@DisplayName("Should Pass Test")
+		@DisplayName("Happy path Test")
 		void withdrawTest(){
-			double amount = 100.56;
-			assertDoesNotThrow( () -> account1.withdraw(amount), "Withdraw throw a Illegal argument when it shouldnt have");
+			double amount = 20.10;
+			double newBalance = initBal - amount;
+			
+			account1.withdraw(amount);
+			 
+			double balReturn = account1.getBalance();
+			assertEquals(newBalance, balReturn, "Balance shoud be " + newBalance + " was " + balReturn);
 		}
 		
 		@Test
@@ -125,10 +142,18 @@ class SavingsAccountTest {
 	@Nested
 	class TransferTest{
 		@Test
-		@DisplayName("Should Pass Test")
+		@DisplayName("Happy Path Test")
 		void transferTest () {
-			double amount  = 100.56;
-			assertDoesNotThrow( () -> Account.transfer(account1, account2, amount), "Transfer throw a exception when it shouldnt have.");
+			double amount  = 30.50;
+			double account1Bal = initBal - amount;
+			double account2Bal = initBal + amount;
+			
+			Account.transfer(account1, account2, amount);
+			
+			double account1Return = account1.getBalance();
+			double account2Return = account2.getBalance();
+			assertEquals(account1Bal, account1Return, "Balance shoud be " + account1Bal + " was " + account1Return);
+			assertEquals(account2Bal, account2Return, "Balance shoud be " + account2Bal + " was " + account2Return);
 		}
 		
 		@Test
@@ -157,7 +182,7 @@ class SavingsAccountTest {
 	class GetTransactionTest{
 		//Returns a List of all transactions for this account. returns List<Transaction>
 		@Test
-		@Disabled //Takes no arguments so can't be tested.
+		@Disabled //Takes no arguments and the object Transactions should be tested in its own class.
 		@DisplayName("Get All Transaction Test")
 		void getTransactionsTest (){}
 		
@@ -179,7 +204,7 @@ class SavingsAccountTest {
 		@Test
 		@DisplayName("Negative id test")
 		void getTransactionTestIdNegative () {
-			int transactionId = 0;
+			int transactionId = -32;
 			assertThrows(IllegalArgumentException.class, () -> account1.getTransaction(transactionId),"Get Transaction took a negative Id");
 		}
 	}
