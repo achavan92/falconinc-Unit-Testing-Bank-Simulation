@@ -74,7 +74,6 @@ public class BankTest {
         @Test
         @DisplayName("getInsufficientFundsPenalty should pass")
         void testGetInsufficientFundsPenalty(){
-            //stub
             double insufficientFundsPenalty = 10.00;
             assertDoesNotThrow( ()-> bank.setInsufficientFundsPenalty(insufficientFundsPenalty) , 
                     "getInsufficientFundsPenalty() threw an exception when it shouldnt have.");
